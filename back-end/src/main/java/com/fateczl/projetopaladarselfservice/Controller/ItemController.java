@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/itens")
+@RequestMapping("/items")
 public class ItemController {
 
     @Autowired
@@ -21,5 +21,9 @@ public class ItemController {
         return itemService.getList();
     }
 
+    @PostMapping()
+    public ItemDto postItem(@RequestBody ItemDto itemDto) {
+        return itemService.createItem(itemDto);
+    }
 
 }

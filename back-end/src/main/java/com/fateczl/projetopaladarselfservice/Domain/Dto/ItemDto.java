@@ -1,18 +1,9 @@
 package com.fateczl.projetopaladarselfservice.Domain.Dto;
 
-import com.fateczl.projetopaladarselfservice.Entity.ItemEntity;
-
 public class ItemDto {
 
     private Long uniqueId;
     private Double valor;
-
-    public ItemDto() {}
-
-    public ItemDto(ItemEntity item){
-        uniqueId = item.getUniqueID();
-        valor = item.getValor();
-    }
 
     public Long getUniqueId() {
         return uniqueId;
