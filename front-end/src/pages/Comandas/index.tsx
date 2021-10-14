@@ -9,11 +9,11 @@ const Comandas = () => {
 
 
     function adicionarItem(item: number) {
-        const moeda = item.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-        console.log(moeda)
+        // const moeda = item.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
         listItens.push(item)
         setListItens(listItens);
         setItem(0);
+        // const listItensNum = listItens.map((i) => Number(i));
         setTotal(listItens.reduce((total, currentElement) => total+currentElement))
     }
 
