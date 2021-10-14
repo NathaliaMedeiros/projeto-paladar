@@ -4,22 +4,30 @@ import { useEffect, useState } from "react";
 const Comandas = () => {
     const [numComanda, setNumComanda] = useState<number>();
     const [listItens, setListItens] = useState<number[]>([]);
-    const [item, setItem] = useState<number>(0);
+    const [item, setItem] = useState<string>("");
     const [total, setTotal] = useState<number>(0);
 
-
-    function adicionarItem(item: number) {
-        const moeda = item.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-        console.log(moeda)
-        listItens.push(item)
+    function adicionarItem(item: string) {
+        listItens.push(parseFloat(item.replace(/\,/g, '.')));
         setListItens(listItens);
-        setItem(0);
-        setTotal(listItens.reduce((total, currentElement) => total+currentElement))
+        setItem("");
+        setTotal(listItens.reduce((total, currentElement) => total + currentElement))
     }
 
     function gerarNumComanda() {
         const num = Math.floor(Math.random() * 21);
         setNumComanda(num);
+    }
+
+    function limparComanda() {
+      setItem("");
+      setListItens([]);
+      setTotal(0);
+    }
+
+    function salvarComanda() {
+      limparComanda();
+      gerarNumComanda();
     }
 
     useEffect(() => {
@@ -38,7 +46,7 @@ const Comandas = () => {
                     <div className="mb-4">
                         <label htmlFor="item-value" className="form-label">Adicionar item</label>
                         <div className="d-flex justify-content-between" >
-                            <input type="text" className="form-control" id="item-value" placeholder="R$" value={item} onChange={(e) => setItem(Number(e.target.value))} />
+                            <input type="text" className="form-control me-1" id="item-value" lang="pt" placeholder="R$" value={item} onChange={(e) => setItem(e.target.value)} />
                             <button type="button" className="btn btn-primary" onClick={() => adicionarItem(item)}>Adicionar</button>
                         </div>
                     </div>
@@ -53,14 +61,15 @@ const Comandas = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className="mb-4">
-                        <h4 id="item-value">
-                            TOTAL {total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
-                        </h4>
+                    <div className="mb-4 d-flex justify-content-between form-control bg-form-disabled">
+                        <span className="fs-4 text fw-bold">TOTAL</span>
+                        <span id="item-value" className="fs-4 text fw-bold">
+                            {total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
+                        </span>
                     </div>
                     <div className="d-flex justify-content-between">
-                        <button type="button" className="btn btn-danger">Cancelar</button>
-                        <button type="submit" className="btn btn-success">Salvar</button>
+                        <button type="button" className="btn btn-danger" onClick={() => limparComanda()}>Cancelar</button>
+                        <button type="submit" className="btn btn-success" onClick={() =>salvarComanda()}>Salvar</button>
                     </div>
                 </form>
             </section>
