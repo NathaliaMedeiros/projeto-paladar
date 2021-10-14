@@ -37,3 +37,7 @@ html, body {
 .board {
     width: 50vh;
 }
+
+.bg-form-disabled {
+    background-color: #e9ecef!important;
+}
