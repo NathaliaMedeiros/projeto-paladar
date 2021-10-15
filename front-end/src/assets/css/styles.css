@@ -38,6 +38,15 @@ html, body {
     width: 50vh;
 }
 
+.board75 {
+    width: 800px !important; 
+}
+
+.table-length{
+    width: 100px !important;
+    word-break: break-word;
+}
+
 .bg-form-disabled {
     background-color: #e9ecef!important;
 }

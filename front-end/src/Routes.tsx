@@ -1,4 +1,5 @@
 import Comandas from "pages/Comandas"
+import Relatorios from "pages/Relatorios"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 const Routes = () => {
@@ -7,6 +8,9 @@ const Routes = () => {
         <Switch>
             <Route path="/" exact>
                 <Comandas />
+            </Route>
+            <Route path="/relatorios" >
+                <Relatorios />
             </Route>
         </Switch>
         </BrowserRouter>
